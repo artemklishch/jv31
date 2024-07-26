@@ -15,9 +15,9 @@ public class CharacterSpecificationProviderManager
     private final List<SpecificationProvider<Character>> characterSpecificationProviders;
 
     @Override
-    public SpecificationProvider<Character> toProvider(String key) {
+    public SpecificationProvider<Character> getSpecificationProvider(String key) {
         return characterSpecificationProviders.stream()
-                .filter(p -> p.getKey().equals(key))
+                .filter(provider -> provider.getKey().equals(key))
                 .findFirst()
                 .orElseThrow(
                         () -> new NoSuchElementException(
