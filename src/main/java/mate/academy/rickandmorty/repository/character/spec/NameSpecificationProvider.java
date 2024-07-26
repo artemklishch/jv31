@@ -7,16 +7,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NameSpecificationProvider implements SpecificationProvider<Character> {
+    private final String queryParamName = "name";
+
     @Override
     public String getKey() {
-        return "name";
+        return queryParamName;
     }
 
     @Override
     public Specification<Character> getSpecification(String name) {
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.like(
-                        criteriaBuilder.lower(root.get("name")),
+                        criteriaBuilder.lower(root.get(queryParamName)),
                         "%" + name.toLowerCase() + "%"
                 );
     }

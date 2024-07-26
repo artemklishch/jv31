@@ -18,7 +18,7 @@ public class CharacterSpecificationBuilderImpl implements CharacterSpecification
         if (params.name() != null) {
             spec = spec.and(
                     specificationProviderManager
-                            .getSpecificationProvider("name")
+                            .toProvider("name")
                             .getSpecification(params.name())
             );
         }

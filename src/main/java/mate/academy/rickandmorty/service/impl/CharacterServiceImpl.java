@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import mate.academy.rickandmorty.dto.internal.CharacterDto;
 import mate.academy.rickandmorty.dto.internal.CharacterSearchParameters;
-import mate.academy.rickandmorty.exceptions.ProceedingException;
+import mate.academy.rickandmorty.exceptions.ProcessingException;
 import mate.academy.rickandmorty.mapper.CharacterMapper;
 import mate.academy.rickandmorty.model.Character;
 import mate.academy.rickandmorty.repository.character.CharacterRepository;
@@ -58,10 +58,10 @@ public class CharacterServiceImpl implements CharacterService {
         try {
             Optional<Character> character = characterRepository.findById(randomId);
             return characterMapper.toDto(character.orElseThrow(
-                    () -> new ProceedingException("Character not found"))
+                    () -> new ProcessingException("Character not found"))
             );
         } catch (NoSuchElementException e) {
-            throw new ProceedingException("Character not found");
+            throw new ProcessingException("Character not found");
         }
     }
 }
